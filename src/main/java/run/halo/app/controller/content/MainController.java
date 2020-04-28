@@ -12,7 +12,6 @@ import run.halo.app.model.support.HaloConst;
 import run.halo.app.service.OptionService;
 import run.halo.app.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -28,12 +27,12 @@ public class MainController {
     /**
      * Index redirect uri.
      */
-    private final static String INDEX_REDIRECT_URI = "index.html";
+    private static final String INDEX_REDIRECT_URI = "index.html";
 
     /**
      * Install redirect uri.
      */
-    private final static String INSTALL_REDIRECT_URI = INDEX_REDIRECT_URI + "#install";
+    private static final String INSTALL_REDIRECT_URI = INDEX_REDIRECT_URI + "#install";
 
     private final UserService userService;
 
@@ -48,7 +47,7 @@ public class MainController {
     }
 
     @GetMapping("${halo.admin-path:admin}")
-    public void admin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void admin(HttpServletResponse response) throws IOException {
         String adminIndexRedirectUri = StringUtils.appendIfMissing(this.haloProperties.getAdminPath(), "/") + INDEX_REDIRECT_URI;
         response.sendRedirect(adminIndexRedirectUri);
     }
